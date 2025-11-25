@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.union.asistencia.controller.EventoController">
+
+    <children>
+        <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <content>
+                <VBox spacing="10.0">
+                    <children>
+                        <!-- Header -->
+                        <HBox spacing="10.0" style="-fx-padding: 15; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                            <children>
+                                <Label text="Gestión de Eventos" style="-fx-font-size: 18; -fx-font-weight: bold;" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label text="Buscar:" />
+                                <TextField fx:id="txtBuscar" promptText="Buscar eventos..." styleClass="shadow-effect" />
+                                <Button mnemonicParsing="false" onAction="#buscarEventos" styleClass="btn-info, shadow-effect" text="🔍 Buscar" />
+                                <Button fx:id="btnExportar" mnemonicParsing="false" onAction="#exportarDatos" styleClass="btn-success, shadow-effect" text="📊 Exportar" />
+
+                                <!-- SOLO UN BOTÓN DE REGISTRO RÁPIDO AQUÍ -->
+                                <Button fx:id="btnRegistroRapido" mnemonicParsing="false" onAction="#handleRegistroRapidoAsistencia"
+                                        styleClass="btn-warning, shadow-effect" text="🚀 Registro Rápido">
+                                    <tooltip>
+                                        <Tooltip text="Registro rápido por DNI o código de estudiante" />
+                                    </tooltip>
+                                </Button>
+                            </children>
+                        </HBox>
+
+                        <!-- Contenido principal -->
+                        <SplitPane dividerPositions="0.3" VBox.vgrow="ALWAYS" prefHeight="600.0">
+                            <items>
+                                <!-- Panel izquierdo - Formulario Evento -->
+                                <VBox spacing="15.0" style="-fx-padding: 20; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                                    <children>
+                                        <Label text="Formulario de Evento" style="-fx-font-size: 16; -fx-font-weight: bold;" />
+
+                                        <VBox spacing="10.0">
+                                            <children>
+                                                <Label text="Nombre *" />
+                                                <TextField fx:id="txtNombre" promptText="Nombre del evento" />
+
+                                                <Label text="Tipo *" />
+                                                <ComboBox fx:id="cbxTipo" promptText="Seleccionar tipo" />
+
+                                                <Label text="Descripción" />
+                                                <TextArea fx:id="txtDescripcion" promptText="Descripción del evento" prefHeight="80.0" />
+
+                                                <HBox spacing="10.0">
+                                                    <children>
+                                                        <VBox HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label text="Fecha Inicio *" />
+                                                                <DatePicker fx:id="dpFechaInicio" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label text="Hora Inicio *" />
+                                                                <ComboBox fx:id="cbxHoraInicio" promptText="HH:MM" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+
+                                                <HBox spacing="10.0">
+                                                    <children>
+                                                        <VBox HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label text="Fecha Fin *" />
+                                                                <DatePicker fx:id="dpFechaFin" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label text="Hora Fin *" />
+                                                                <ComboBox fx:id="cbxHoraFin" promptText="HH:MM" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+
+                                                <Label text="Lugar *" />
+                                                <TextField fx:id="txtLugar" promptText="Lugar del evento" />
+
+                                                <Label text="Responsable" />
+                                                <TextField fx:id="txtResponsable" promptText="Responsable del evento" />
+
+                                                <Label text="Capacidad Máxima" />
+                                                <Spinner fx:id="spnCapacidad" />
+
+                                                <CheckBox fx:id="chkRequiereInscripcion" text="Requiere Inscripción" />
+                                            </children>
+                                        </VBox>
+
+                                        <HBox spacing="10.0" style="-fx-padding: 20 0 0 0;">
+                                            <children>
+                                                <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarEvento" styleClass="btn-success, shadow-effect" text="💾 Guardar Evento" HBox.hgrow="ALWAYS" />
+                                                <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" styleClass="btn-danger, shadow-effect" text="❌ Cancelar" HBox.hgrow="ALWAYS" />
+                                                <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminarEvento" styleClass="btn-danger, shadow-effect" text="🗑️ Eliminar" HBox.hgrow="ALWAYS" />
+                                            </children>
+                                        </HBox>
+
+                                        <!-- QR Code -->
+                                        <VBox spacing="10.0" style="-fx-padding: 20 0 0 0; -fx-border-color: #bdc3c7; -fx-border-width: 1; -fx-border-radius: 5; -fx-padding: 10;">
+                                            <children>
+                                                <Label text="Código QR del Evento" style="-fx-font-weight: bold;" />
+                                                <Button fx:id="btnGenerarQR" mnemonicParsing="false" onAction="#generarQREvento" styleClass="btn-info, shadow-effect" text="📱 Generar QR" />
+                                                <ImageView fx:id="imgQREvento" fitHeight="150.0" fitWidth="150.0" preserveRatio="true" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+
+                                <!-- Panel derecho - Participantes -->
+                                <VBox spacing="15.0">
+                                    <children>
+                                        <!-- Tabla de eventos -->
+                                        <VBox spacing="10.0" VBox.vgrow="ALWAYS">
+                                            <children>
+                                                <Label text="Lista de Eventos" style="-fx-font-size: 16; -fx-font-weight: bold;" />
+                                                <TableView fx:id="tableView" VBox.vgrow="ALWAYS" styleClass="shadow-effect" prefHeight="200.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="colId" text="ID" minWidth="50" maxWidth="80" />
+                                                        <TableColumn fx:id="colNombre" text="Nombre" minWidth="200" maxWidth="300" />
+                                                        <TableColumn fx:id="colTipo" text="Tipo" minWidth="100" maxWidth="120" />
+                                                        <TableColumn fx:id="colFechaInicio" text="Fecha Inicio" minWidth="150" maxWidth="200" />
+                                                        <TableColumn fx:id="colLugar" text="Lugar" minWidth="120" maxWidth="180" />
+                                                        <TableColumn fx:id="colEstado" text="Estado" minWidth="100" maxWidth="120" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </VBox>
+
+                                        <!-- Inscripción de participantes -->
+                                        <VBox spacing="10.0" style="-fx-padding: 10; -fx-background-color: #f8f9fa; -fx-border-color: #e9ecef; -fx-border-width: 1; -fx-border-radius: 5;">
+                                            <children>
+                                                <Label text="Inscripción de Participantes" style="-fx-font-weight: bold;" />
+                                                <HBox spacing="10.0">
+                                                    <children>
+                                                        <VBox HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label text="Tipo Participante" />
+                                                                <ComboBox fx:id="cbxTipoParticipante" promptText="Seleccionar tipo" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label text="Estudiante" />
+                                                                <ComboBox fx:id="cbxEstudiante" promptText="Seleccionar estudiante" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label text="Docente" />
+                                                                <ComboBox fx:id="cbxDocente" promptText="Seleccionar docente" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+                                                <!-- AQUÍ SOLO QUEDA EL BOTÓN DE INSCRIBIR, EL DE REGISTRO RÁPIDO SE ELIMINÓ -->
+                                                <Button fx:id="btnInscribir" mnemonicParsing="false" onAction="#inscribirParticipante" styleClass="btn-success, shadow-effect" text="👥 Inscribir Participante" />
+                                            </children>
+                                        </VBox>
+
+                                        <!-- Tabla de participantes -->
+                                        <VBox spacing="10.0" VBox.vgrow="ALWAYS">
+                                            <children>
+                                                <Label text="Participantes del Evento" style="-fx-font-size: 14; -fx-font-weight: bold;" />
+                                                <TableView fx:id="tablaParticipantes" VBox.vgrow="ALWAYS" styleClass="shadow-effect" prefHeight="200.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="colParticipante" text="Participante" minWidth="200" maxWidth="300" />
+                                                        <TableColumn fx:id="colTipoParticipante" text="Tipo" minWidth="100" maxWidth="120" />
+                                                        <TableColumn fx:id="colAsistio" text="Asistió" minWidth="80" maxWidth="100" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+                            </items>
+                        </SplitPane>
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

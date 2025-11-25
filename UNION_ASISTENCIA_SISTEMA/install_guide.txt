@@ -1,0 +1,6 @@
+Instalación y ejecución (intelliJ):
+1. Asegúrate de tener JDK 17 instalado.
+2. Abre IntelliJ -> Open -> selecciona la carpeta UNION_ASISTENCIA_SISTEMA.
+3. Dejar que IntelliJ importe el proyecto Maven.
+4. Edita src/main/java/com/union/asistencia/dao/DatabaseConnection.java y coloca tu conexión a MySQL.
+5. Ejecuta: mvn javafx:run  (o configura una run configuration usando el plugin javafx-maven-plugin)

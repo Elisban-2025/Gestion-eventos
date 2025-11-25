@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.union.asistencia.controller.UsuarioController">
+
+    <children>
+        <VBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <!-- Header -->
+                <HBox spacing="10.0" style="-fx-padding: 15; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                    <children>
+                        <Label text="Gestión de Usuarios" style="-fx-font-size: 18; -fx-font-weight: bold;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label text="Buscar:" />
+                        <TextField fx:id="txtBuscar" promptText="Buscar usuarios..." styleClass="shadow-effect" />
+                        <Button mnemonicParsing="false" onAction="#buscarUsuarios" styleClass="btn-info, shadow-effect" text="🔍 Buscar" />
+                    </children>
+                </HBox>
+
+                <!-- Contenido principal -->
+                <HBox VBox.vgrow="ALWAYS">
+                    <children>
+                        <!-- Formulario -->
+                        <VBox spacing="15.0" style="-fx-padding: 20; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" prefWidth="400.0">
+                            <children>
+                                <Label text="Formulario de Usuario" style="-fx-font-size: 16; -fx-font-weight: bold;" />
+
+                                <GridPane hgap="10.0" vgap="10.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="120.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="200.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label text="Usuario *" />
+                                        <TextField fx:id="txtUsername" promptText="Nombre de usuario" GridPane.columnIndex="1" />
+
+                                        <Label text="Contraseña" GridPane.rowIndex="1" />
+                                        <HBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                            <children>
+                                                <PasswordField fx:id="txtPassword" promptText="Contraseña" HBox.hgrow="ALWAYS" />
+                                                <Button fx:id="btnGenerarPassword" mnemonicParsing="false" onAction="#generarPassword" styleClass="btn-warning" text="🎲" />
+                                            </children>
+                                        </HBox>
+
+                                        <Label text="Nombre *" GridPane.rowIndex="2" />
+                                        <TextField fx:id="txtNombre" promptText="Nombre" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                                        <Label text="Apellido *" GridPane.rowIndex="3" />
+                                        <TextField fx:id="txtApellido" promptText="Apellido" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                                        <Label text="Email *" GridPane.rowIndex="4" />
+                                        <TextField fx:id="txtEmail" promptText="usuario@upeu.edu.pe" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                                        <Label text="Rol *" GridPane.rowIndex="5" />
+                                        <ComboBox fx:id="cbxRol" promptText="Seleccionar rol" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                                        <Label text="Activo" GridPane.rowIndex="6" />
+                                        <CheckBox fx:id="chkActivo" selected="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    </children>
+                                </GridPane>
+
+                                <!-- BOTONES PRINCIPALES CON ELIMINAR -->
+                                <HBox spacing="10.0" style="-fx-padding: 20 0 0 0;">
+                                    <children>
+                                        <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarUsuario" styleClass="btn-success, shadow-effect" text="💾 Guardar Usuario" HBox.hgrow="ALWAYS" />
+                                        <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" styleClass="btn-danger, shadow-effect" text="❌ Cancelar" HBox.hgrow="ALWAYS" />
+                                        <!-- ✅ NUEVO BOTÓN ELIMINAR -->
+                                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminarUsuario" styleClass="btn-danger, shadow-effect" text="🗑️ Eliminar" HBox.hgrow="ALWAYS">
+                                            <tooltip>
+                                                <Tooltip text="Eliminar usuario seleccionado" />
+                                            </tooltip>
+                                        </Button>
+                                    </children>
+                                </HBox>
+
+                                <!-- BOTÓN ESPECIAL PARA EVENTOS -->
+                                <Separator />
+                                <HBox spacing="10.0" style="-fx-padding: 10 0 0 0;">
+                                    <children>
+                                        <Button fx:id="btnCrearEventos" mnemonicParsing="false" onAction="#crearUsuarioParaEventos" styleClass="btn-primary, shadow-effect" text="➕ Crear Usuario Eventos" HBox.hgrow="ALWAYS">
+                                            <tooltip>
+                                                <Tooltip text="Crear usuario con acceso solo al módulo de Eventos" />
+                                            </tooltip>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+
+                        <!-- Tabla -->
+                        <VBox spacing="10.0" style="-fx-padding: 0 0 0 10;" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="Lista de Usuarios" style="-fx-font-size: 16; -fx-font-weight: bold;" />
+                                <TableView fx:id="tableView" VBox.vgrow="ALWAYS" styleClass="shadow-effect">
+                                    <columns>
+                                        <TableColumn fx:id="colId" text="ID" minWidth="50" maxWidth="80" />
+                                        <TableColumn fx:id="colUsername" text="Usuario" minWidth="100" maxWidth="150" />
+                                        <TableColumn fx:id="colNombre" text="Nombre" minWidth="120" maxWidth="200" />
+                                        <TableColumn fx:id="colApellido" text="Apellido" minWidth="120" maxWidth="200" />
+                                        <TableColumn fx:id="colEmail" text="Email" minWidth="150" maxWidth="250" />
+                                        <TableColumn fx:id="colRol" text="Rol" minWidth="100" maxWidth="120" />
+                                        <TableColumn fx:id="colFechaCreacion" text="Fecha Creación" minWidth="120" maxWidth="150" />
+                                        <TableColumn fx:id="colActivo" text="Activo" minWidth="80" maxWidth="100" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

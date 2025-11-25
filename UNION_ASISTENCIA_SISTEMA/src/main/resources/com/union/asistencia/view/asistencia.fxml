@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+
+<!--
+    Interfaz principal para el módulo de Control de Asistencia.
+    Permite registrar, consultar, modificar y eliminar registros de asistencia.
+    Diseñado con layout responsivo y componentes organizados por funcionalidad.
+ -->
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.union.asistencia.controller.AsistenciaController">
+
+    <children>
+        <!-- ==================== SCROLLPANE PRINCIPAL QUE CUBRE TODA LA INTERFAZ ==================== -->
+        <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED"
+                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <content>
+                <!-- ==================== LAYOUT PRINCIPAL VERTICAL ==================== -->
+                <VBox spacing="10.0" style="-fx-padding: 10;">
+                    <children>
+
+                        <!-- ==================== SECCIÓN SUPERIOR: CABECERA Y FILTROS ==================== -->
+                        <HBox spacing="10.0" style="-fx-padding: 15; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" minWidth="1000">
+                            <children>
+                                <!-- Título principal del módulo -->
+                                <Label text="Control de Asistencia" style="-fx-font-size: 18; -fx-font-weight: bold;" />
+
+                                <!-- Espacio flexible para alinear elementos a la derecha -->
+                                <Region HBox.hgrow="ALWAYS" />
+
+                                <!-- Filtro por fecha -->
+                                <Label text="Fecha:" />
+                                <DatePicker fx:id="dpFecha" />
+
+                                <!-- Filtro por asignatura -->
+                                <ComboBox fx:id="cbxAsignaturaFiltro" promptText="Seleccionar asignatura" prefWidth="200" />
+
+                                <!-- Botón para aplicar filtros -->
+                                <Button fx:id="btnFiltrar" mnemonicParsing="false" onAction="#filtrarAsistencias" text="🔍 Filtrar" />
+
+                                <!-- Botón para exportar datos a CSV -->
+                                <Button fx:id="btnExportar" mnemonicParsing="false" onAction="#exportarDatos" text="📊 Exportar" />
+                            </children>
+                        </HBox>
+
+                        <!-- ==================== SECCIÓN PRINCIPAL: FORMULARIO Y TABLA ==================== -->
+                        <HBox VBox.vgrow="ALWAYS" minWidth="1000">
+                            <children>
+
+                                <!-- ==================== PANEL IZQUIERDO: FORMULARIO DE REGISTRO ==================== -->
+                                <VBox spacing="15.0" style="-fx-padding: 20; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" prefWidth="400.0">
+                                    <children>
+                                        <!-- Título del panel de registro -->
+                                        <Label text="Registro de Asistencia" style="-fx-font-size: 16; -fx-font-weight: bold;" />
+
+                                        <!-- ==================== FORMULARIO DE DATOS ==================== -->
+                                        <VBox spacing="10.0">
+                                            <children>
+                                                <!-- Selección de estudiante -->
+                                                <Label text="Estudiante:" />
+                                                <ComboBox fx:id="cbxEstudiante" promptText="Seleccionar estudiante" prefWidth="300" />
+
+                                                <!-- Selección de asignatura -->
+                                                <Label text="Asignatura:" />
+                                                <ComboBox fx:id="cbxAsignatura" promptText="Seleccionar asignatura" prefWidth="300" onAction="#onAsignaturaChanged" />
+
+                                                <!-- Selección de docente -->
+                                                <Label text="Docente:" />
+                                                <ComboBox fx:id="cbxDocente" promptText="Seleccionar docente" prefWidth="300" />
+
+                                                <!-- Selección de estado de asistencia -->
+                                                <Label text="Estado:" />
+                                                <ComboBox fx:id="cbxEstado" promptText="Seleccionar estado" prefWidth="300" />
+
+                                                <!-- Selección de tipo de registro -->
+                                                <Label text="Tipo de Registro:" />
+                                                <ComboBox fx:id="cbxTipoRegistro" promptText="Seleccionar tipo" prefWidth="300" />
+
+                                                <!-- Campo para observaciones -->
+                                                <Label text="Observaciones:" />
+                                                <TextArea fx:id="txtObservaciones" promptText="Observaciones adicionales" prefHeight="80.0" prefWidth="300" />
+                                            </children>
+                                        </VBox>
+
+                                        <!-- ==================== BOTONES DE ACCIÓN PRINCIPAL ==================== -->
+                                        <HBox spacing="10.0" style="-fx-padding: 20 0 0 0;">
+                                            <children>
+                                                <!-- Botón para guardar o actualizar registro -->
+                                                <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarAsistencia" text="💾 Guardar" HBox.hgrow="ALWAYS" />
+
+                                                <!-- Botón para cancelar operación y limpiar formulario -->
+                                                <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" text="❌ Cancelar" HBox.hgrow="ALWAYS" />
+                                            </children>
+                                        </HBox>
+
+                                        <!-- ==================== SECCIÓN DE CÓDIGOS QR MEJORADA ==================== -->
+                                        <VBox spacing="10.0" style="-fx-padding: 20 0 0 0; -fx-border-color: #3498db; -fx-border-width: 2; -fx-border-radius: 8; -fx-padding: 15; -fx-background-color: #f8f9fa;">
+                                            <children>
+                                                <!-- Título de la sección QR -->
+                                                <Label text="🚀 Registro Rápido por QR" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-font-size: 14;" />
+
+                                                <!-- Botones de acción QR -->
+                                                <HBox spacing="10.0" alignment="CENTER">
+                                                    <children>
+                                                        <!-- Botón para generar MI QR personal -->
+                                                        <Button fx:id="btnMiQR" mnemonicParsing="false" onAction="#generarMiQR" text="👤 Mi QR"
+                                                                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;" />
+
+                                                        <!-- Botón para escanear QR -->
+                                                        <Button fx:id="btnEscanearQR" mnemonicParsing="false" onAction="#escanearQR" text="📷 Escanear QR"
+                                                                style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold;" />
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- QR existente (se mantiene igual) -->
+                                                <Button fx:id="btnGenerarQR" mnemonicParsing="false" onAction="#generarQR" text="📱 QR Rápido"
+                                                        style="-fx-background-color: #8e44ad; -fx-text-fill: white;" />
+
+                                                <!-- ImageView para mostrar el código QR generado -->
+                                                <ImageView fx:id="imgQRAsistencia" fitHeight="150.0" fitWidth="150.0" preserveRatio="true"
+                                                           style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 2);" />
+
+                                                <!-- Información QR -->
+                                                <Label text="⏰ QR válido por 5 minutos" style="-fx-font-size: 10; -fx-text-fill: #7f8c8d;" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+
+                                <!-- ==================== PANEL DERECHO: TABLA DE REGISTROS ==================== -->
+                                <VBox spacing="10.0" style="-fx-padding: 0 0 0 10;" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <!-- Título de la tabla de registros -->
+                                        <Label text="Registros de Asistencia" style="-fx-font-size: 16; -fx-font-weight: bold;" />
+
+                                        <!-- ==================== CONTENEDOR CON SCROLL PARA LA TABLA ==================== -->
+                                        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED">
+                                            <content>
+                                                <!-- Tabla principal que muestra todos los registros de asistencia -->
+                                                <TableView fx:id="tableView" VBox.vgrow="ALWAYS">
+                                                    <columns>
+                                                        <!-- Columna ID: Identificador único del registro -->
+                                                        <TableColumn fx:id="colId" text="ID" minWidth="50" />
+
+                                                        <!-- Columna Fecha/Hora: Momento del registro -->
+                                                        <TableColumn fx:id="colFechaHora" text="Fecha/Hora" minWidth="150" />
+
+                                                        <!-- Columna Estudiante: Nombre del estudiante -->
+                                                        <TableColumn fx:id="colEstudiante" text="Estudiante" minWidth="200" />
+
+                                                        <!-- Columna Asignatura: Nombre de la asignatura -->
+                                                        <TableColumn fx:id="colAsignatura" text="Asignatura" minWidth="150" />
+
+                                                        <!-- Columna Estado: Estado de la asistencia -->
+                                                        <TableColumn fx:id="colEstado" text="Estado" minWidth="100" />
+
+                                                        <!-- Columna Tipo Registro: Método de registro utilizado -->
+                                                        <TableColumn fx:id="colTipoRegistro" text="Tipo Registro" minWidth="120" />
+
+                                                        <!-- Columna Observaciones: Comentarios adicionales -->
+                                                        <TableColumn fx:id="colObservaciones" text="Observaciones" minWidth="200" />
+                                                    </columns>
+                                                </TableView>
+                                            </content>
+                                        </ScrollPane>
+
+                                        <!-- ==================== BOTONES DE ACCIÓN SECUNDARIA ==================== -->
+                                        <HBox spacing="10.0" alignment="CENTER_RIGHT">
+                                            <children>
+                                                <!-- Botón para eliminar registro seleccionado -->
+                                                <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminarAsistencia" text="🗑️ Eliminar Registro" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

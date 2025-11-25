@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.union.asistencia.controller.HorarioController">
+
+    <children>
+        <VBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <!-- Header -->
+                <HBox spacing="10.0" style="-fx-padding: 15; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                    <children>
+                        <Label text="Gestión de Horarios" style="-fx-font-size: 18; -fx-font-weight: bold;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtBuscar" promptText="Buscar horarios..." styleClass="shadow-effect" />
+                        <Button mnemonicParsing="false" onAction="#buscarHorarios" styleClass="btn-info, shadow-effect" text="🔍 Buscar" />
+                        <Button fx:id="btnExportar" mnemonicParsing="false" onAction="#exportarDatos" styleClass="btn-success, shadow-effect" text="📊 Exportar" />
+                    </children>
+                </HBox>
+
+                <!-- Contenido principal -->
+                <HBox VBox.vgrow="ALWAYS">
+                    <children>
+                        <!-- Formulario -->
+                        <VBox spacing="15.0" style="-fx-padding: 20; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" prefWidth="400.0">
+                            <children>
+                                <Label text="Formulario de Horario" style="-fx-font-size: 16; -fx-font-weight: bold;" />
+
+                                <GridPane hgap="10.0" vgap="10.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="120.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="200.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label text="Día *" />
+                                        <ComboBox fx:id="cbxDia" promptText="Seleccionar día" GridPane.columnIndex="1" />
+
+                                        <Label text="Hora Inicio *" GridPane.rowIndex="1" />
+                                        <ComboBox fx:id="cbxHoraInicio" promptText="HH:MM" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                                        <Label text="Hora Fin *" GridPane.rowIndex="2" />
+                                        <ComboBox fx:id="cbxHoraFin" promptText="HH:MM" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                                        <Label text="Tipo *" GridPane.rowIndex="3" />
+                                        <ComboBox fx:id="cbxTipo" promptText="Seleccionar tipo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                                        <Label text="Aula *" GridPane.rowIndex="4" />
+                                        <ComboBox fx:id="cbxAula" promptText="Seleccionar aula" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                                        <Label text="Asignatura *" GridPane.rowIndex="5" />
+                                        <ComboBox fx:id="cbxAsignatura" promptText="Seleccionar asignatura" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                                        <Label text="Docente *" GridPane.rowIndex="6" />
+                                        <ComboBox fx:id="cbxDocente" promptText="Seleccionar docente" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    </children>
+                                </GridPane>
+
+                                <HBox spacing="10.0" style="-fx-padding: 20 0 0 0;">
+                                    <children>
+                                        <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarHorario" styleClass="btn-success, shadow-effect" text="💾 Guardar Horario" HBox.hgrow="ALWAYS" />
+                                        <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" styleClass="btn-danger, shadow-effect" text="❌ Cancelar" HBox.hgrow="ALWAYS" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+
+                        <!-- Tabla -->
+                        <VBox spacing="10.0" style="-fx-padding: 0 0 0 10;" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="Lista de Horarios" style="-fx-font-size: 16; -fx-font-weight: bold;" />
+                                <TableView fx:id="tableView" VBox.vgrow="ALWAYS" styleClass="shadow-effect">
+                                    <columns>
+                                        <TableColumn fx:id="colId" text="ID" minWidth="50" maxWidth="80" />
+                                        <TableColumn fx:id="colDia" text="Día" minWidth="100" maxWidth="120" />
+                                        <TableColumn fx:id="colHoraInicio" text="Hora Inicio" minWidth="100" maxWidth="120" />
+                                        <TableColumn fx:id="colHoraFin" text="Hora Fin" minWidth="100" maxWidth="120" />
+                                        <TableColumn fx:id="colTipo" text="Tipo" minWidth="100" maxWidth="120" />
+                                        <TableColumn fx:id="colAula" text="Aula" minWidth="100" maxWidth="120" />
+                                        <TableColumn fx:id="colAsignatura" text="Asignatura" minWidth="150" maxWidth="250" />
+                                        <TableColumn fx:id="colDocente" text="Docente" minWidth="150" maxWidth="250" />
+                                    </columns>
+                                </TableView>
+                                <HBox spacing="10.0" alignment="CENTER_RIGHT">
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#eliminarHorario" styleClass="btn-danger, shadow-effect" text="🗑️ Eliminar Horario" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootPane" prefHeight="300.0" prefWidth="270.0" minHeight="300.0" minWidth="270.0" maxHeight="300.0" maxWidth="270.0"
+            style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.union.asistencia.controller.LoginController">
+
+    <!-- Marca de agua en el fondo PERFECTAMENTE CENTRADA -->
+    <ImageView fitHeight="200.0" fitWidth="200.0" mouseTransparent="true" opacity="0.15" pickOnBounds="true" preserveRatio="true"
+               AnchorPane.topAnchor="50.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0">
+        <Image url="@/logo.jpeg" />
+    </ImageView>
+
+    <!-- Contenido principal CENTRADO -->
+    <VBox alignment="CENTER" spacing="8.0" prefWidth="200.0" minWidth="200.0" maxWidth="200.0"
+          AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="25.0">
+
+        <Label style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-alignment: center; -fx-wrap-text: true;" text="Gestión de Asistencia" />
+        <Label style="-fx-font-size: 11; -fx-text-fill: #7f8c8d; -fx-alignment: center;" text="Universidad Peruana Unión" />
+
+        <!-- Línea separadora -->
+        <Separator prefWidth="160.0" minWidth="160.0" maxWidth="160.0" style="-fx-padding: 5 0 5 0;" />
+
+        <!-- Campos compactos -->
+        <VBox alignment="CENTER" spacing="5.0" prefWidth="150.0" minWidth="150.0" maxWidth="150.0">
+            <TextField fx:id="txtUsername" prefHeight="28.0" prefWidth="130.0" minWidth="130.0" maxWidth="130.0"
+                       promptText="Usuario" style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-font-size: 12; -fx-background-color: white;" />
+            <PasswordField fx:id="txtPassword" prefHeight="28.0" prefWidth="130.0" minWidth="130.0" maxWidth="130.0"
+                           promptText="Contraseña" style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-font-size: 12; -fx-background-color: white;" />
+        </VBox>
+
+        <Button fx:id="btnLogin" onAction="#login" prefWidth="130.0" minWidth="130.0" maxWidth="130.0" prefHeight="28.0"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-font-size: 12;" text="Ingresar" />
+
+        <Hyperlink fx:id="linkRecuperacion" onAction="#recuperarPassword"
+                   style="-fx-text-fill: #3498db; -fx-border-color: transparent; -fx-font-size: 10;" text="¿Olvidó contraseña?" />
+
+        <ProgressIndicator fx:id="progressIntentos" prefHeight="18.0" prefWidth="18.0" minHeight="18.0" minWidth="18.0" visible="false" />
+        <Label fx:id="lblIntentos" style="-fx-font-size: 10; -fx-text-fill: #e74c3c;" visible="false" />
+        <Label fx:id="lblError" prefWidth="160.0" minWidth="160.0" maxWidth="160.0"
+               style="-fx-text-fill: #e74c3c; -fx-font-size: 10; -fx-alignment: center; -fx-wrap-text: true;" visible="false" />
+
+    </VBox>
+
+</AnchorPane>

@@ -1,0 +1,69 @@
+# Archivos compilados
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Logs
+*.log
+logs/
+
+# IDE
+.idea/
+*.iws
+*.iml
+*.ipr
+.classpath
+.project
+.settings/
+bin/
+*.tmp
+*.temp
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Base de datos
+*.db
+*.sqlite
+
+# Archivos de configuración local
+config/local.properties
+
+# Archivos de base de datos de desarrollo
+*.mdb
+*.accdb
+
+# Backup files
+*.bak
+*.backup
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Archivos de licencia
+LICENSE.txt
+
+# Archivos de documentación
+/docs/generated/
+
+# Archivos de aplicación
+/*.exe
+/*.msi

@@ -1,0 +1,86 @@
+.corporate-theme {
+    -fx-background-color: linear-gradient(to bottom right, #003366, #00509E);
+}
+
+.corporate-theme .label {
+    -fx-text-fill: #ffffff;
+}
+
+.corporate-theme .text-field,
+.corporate-theme .password-field,
+.corporate-theme .text-area {
+    -fx-background-color: rgba(255, 255, 255, 0.9);
+    -fx-text-fill: #2c3e50;
+    -fx-border-color: #00509E;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 8 12 8 12;
+}
+
+.corporate-theme .text-field:focused,
+.corporate-theme .password-field:focused {
+    -fx-border-color: #FFD700;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 215, 0, 0.3), 5, 0, 0, 0);
+}
+
+.corporate-theme .button {
+    -fx-background-color: linear-gradient(to bottom, #00509E, #003366);
+    -fx-text-fill: white;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-padding: 10 20 10 20;
+    -fx-font-weight: bold;
+}
+
+.corporate-theme .button:hover {
+    -fx-background-color: linear-gradient(to bottom, #003366, #002244);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);
+}
+
+.corporate-theme .button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #002244, #001933);
+}
+
+.corporate-theme .table-view {
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.corporate-theme .table-view .column-header {
+    -fx-background-color: linear-gradient(to bottom, #00509E, #003366);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-color: #003366;
+}
+
+.corporate-theme .table-view .column-header .label {
+    -fx-text-fill: white;
+}
+
+.corporate-theme .table-row-cell:even {
+    -fx-background-color: #f8f9fa;
+}
+
+.corporate-theme .table-row-cell:odd {
+    -fx-background-color: #e9ecef;
+}
+
+.corporate-theme .table-row-cell:selected {
+    -fx-background-color: #00509E;
+    -fx-text-fill: white;
+}
+
+.corporate-theme .table-row-cell:selected .text {
+    -fx-fill: white;
+}
+/* Watermark para Tema Institucional */
+.corporate-theme .watermark-label {
+    -fx-text-fill: rgba(0, 80, 158, 0.08);
+}
+
+.corporate-theme .watermark-control-panel {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #00509e;
+}

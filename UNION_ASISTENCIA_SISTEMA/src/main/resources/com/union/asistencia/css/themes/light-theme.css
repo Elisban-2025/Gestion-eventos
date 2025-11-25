@@ -1,0 +1,83 @@
+.light-theme {
+    -fx-background-color: #ecf0f1;
+}
+
+.light-theme .label {
+    -fx-text-fill: #2c3e50;
+}
+
+.light-theme .text-field,
+.light-theme .password-field,
+.light-theme .text-area {
+    -fx-background-color: white;
+    -fx-text-fill: #2c3e50;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 8 12 8 12;
+}
+
+.light-theme .text-field:focused,
+.light-theme .password-field:focused {
+    -fx-border-color: #3498db;
+    -fx-effect: dropshadow(three-pass-box, rgba(52, 152, 219, 0.3), 5, 0, 0, 0);
+}
+
+.light-theme .button {
+    -fx-background-color: linear-gradient(to bottom, #3498db, #2980b9);
+    -fx-text-fill: white;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-padding: 10 20 10 20;
+    -fx-font-weight: bold;
+}
+
+.light-theme .button:hover {
+    -fx-background-color: linear-gradient(to bottom, #2980b9, #2471a3);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 0);
+}
+
+.light-theme .table-view {
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.light-theme .table-view .column-header {
+    -fx-background-color: linear-gradient(to bottom, #34495e, #2c3e50);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-color: #2c3e50;
+}
+
+.light-theme .table-view .column-header .label {
+    -fx-text-fill: white;
+}
+
+.light-theme .table-row-cell:even {
+    -fx-background-color: #f8f9fa;
+}
+
+.light-theme .table-row-cell:odd {
+    -fx-background-color: #e9ecef;
+}
+
+.light-theme .table-row-cell:selected {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+.light-theme .table-row-cell:selected .text {
+    -fx-fill: white;
+}
+
+/* Watermark para Tema Claro */
+.light-theme .watermark-label {
+    -fx-text-fill: rgba(52, 152, 219, 0.08);
+}
+
+.light-theme .watermark-control-panel {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ced4da;
+}
