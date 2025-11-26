@@ -5,11 +5,10 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- PARENT SPRING BOOT -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.18</version> <!-- ✅ Versión estable con Java 17 -->
+        <version>2.7.18</version>
     </parent>
 
     <groupId>com.union</groupId>
@@ -22,13 +21,18 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javafx.version>17.0.2</javafx.version>
-        <java.version>17</java.version> <!-- ✅ Compatible con Spring Boot 2.7 -->
+        <java.version>17</java.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>openjfx</id>
+            <url>https://nexus.gluonhq.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
-        <!-- ==================== -->
         <!-- SPRING BOOT STARTERS -->
-        <!-- ==================== -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -42,9 +46,7 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
-        <!-- ==================== -->
-        <!-- JAVAFX (MANTENIDO) -->
-        <!-- ==================== -->
+        <!-- JAVAFX COMPLETO -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -60,52 +62,62 @@
             <artifactId>javafx-swing</artifactId>
             <version>${javafx.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
 
-        <!-- ==================== -->
         <!-- BASE DE DATOS -->
-        <!-- ==================== -->
-        <!-- SQLite Database -->
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.42.0.0</version>
         </dependency>
-
-        <!-- MySQL Connector (MANTENIDO) -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.gwenn</groupId>
+            <artifactId>sqlite-dialect</artifactId>
+            <version>0.1.4</version>
+        </dependency>
 
-        <!-- ==================== -->
-        <!-- SEGURIDAD Y UTILIDADES (MANTENIDOS) -->
-        <!-- ==================== -->
-        <!-- Bcrypt para encriptación de contraseñas -->
+        <!-- SEGURIDAD Y UTILIDADES -->
         <dependency>
             <groupId>org.mindrot</groupId>
             <artifactId>jbcrypt</artifactId>
             <version>0.4</version>
         </dependency>
-
-        <!-- Lombok - Reducción de código boilerplate -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
-
-        <!-- Apache Commons Lang - Utilidades -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
         </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.11.0</version>
+        </dependency>
 
-        <!-- ==================== -->
-        <!-- PDF Y QR (MANTENIDOS) -->
-        <!-- ==================== -->
-        <!-- iText PDF -->
+        <!-- PDF Y QR -->
         <dependency>
             <groupId>com.itextpdf</groupId>
             <artifactId>kernel</artifactId>
@@ -121,8 +133,6 @@
             <artifactId>io</artifactId>
             <version>7.2.5</version>
         </dependency>
-
-        <!-- QR Code Generation -->
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
@@ -134,10 +144,7 @@
             <version>3.5.1</version>
         </dependency>
 
-        <!-- ==================== -->
         <!-- LOGGING Y WEB -->
-        <!-- ==================== -->
-        <!-- Log4j2 (Spring Boot usa Logback por defecto, pero mantengo Log4j2) -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
@@ -148,17 +155,13 @@
             <artifactId>log4j-api</artifactId>
             <version>2.20.0</version>
         </dependency>
-
-        <!-- Jsoup para web scraping de consulta DNI -->
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
             <version>1.17.1</version>
         </dependency>
 
-        <!-- ==================== -->
-        <!-- TESTING (SPRING BOOT) -->
-        <!-- ==================== -->
+        <!-- TESTING -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -168,7 +171,6 @@
 
     <build>
         <plugins>
-            <!-- Plugin Spring Boot -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -183,7 +185,6 @@
                 </configuration>
             </plugin>
 
-            <!-- Plugin de JavaFX para ejecutar la aplicación -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -193,7 +194,6 @@
                 </configuration>
             </plugin>
 
-            <!-- Plugin del compilador de Maven -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

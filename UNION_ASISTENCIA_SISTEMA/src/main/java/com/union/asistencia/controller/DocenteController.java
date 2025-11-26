@@ -264,7 +264,6 @@ public class DocenteController extends BaseController {
         }
     }
 
-    // ✅ MÉTODO FALTANTE AGREGADO
     @FXML
     private void exportarDatos() {
         if (docentesList.isEmpty()) {
@@ -367,7 +366,6 @@ public class DocenteController extends BaseController {
         alert.showAndWait();
     }
 
-    // ✅ MÉTODO PARA GENERAR CÓDIGO AUTOMÁTICO (OPCIONAL)
     @FXML
     private void generarCodigoAutomatico() {
         if (txtNombre.getText().trim().isEmpty() || txtApellido.getText().trim().isEmpty()) {

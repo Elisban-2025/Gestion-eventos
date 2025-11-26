@@ -12,8 +12,6 @@ import java.util.Map;
 
 @Log
 public class ReporteDAO {
-
-    // ✅ MÉTODO CORREGIDO PARA SQLite
     public List<Map<String, Object>> generarReporteAsistenciaMensual(int mes, int anio) {
         List<Map<String, Object>> reporte = new ArrayList<>();
 

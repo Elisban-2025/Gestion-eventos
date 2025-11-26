@@ -11,15 +11,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * Lector de códigos QR desde imágenes
- * @author Elisban Huaylla
- */
 public class QRReader {
 
-    /**
-     * Lee código QR desde archivo de imagen
-     */
     public static String leerQRDesdeArchivo(String imagePath) {
         try {
             BufferedImage bufferedImage = ImageIO.read(new File(imagePath));
@@ -35,9 +28,6 @@ public class QRReader {
         }
     }
 
-    /**
-     * Abre diálogo para seleccionar imagen QR y la procesa
-     */
     public static String seleccionarYLeerQR() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar código QR escaneado");

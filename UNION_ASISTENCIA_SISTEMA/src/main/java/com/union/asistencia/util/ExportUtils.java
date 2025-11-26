@@ -20,16 +20,6 @@ public class ExportUtils {
     private static final DateTimeFormatter DATE_FORMATTER =
             DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
 
-    // ============================================
-    // MÉTODOS PÚBLICOS DE EXPORTACIÓN
-    // ============================================
-
-    /**
-     * Exporta una TableView a formato CSV con manejo seguro de tipos genéricos
-     * @param tabla TableView a exportar
-     * @param nombreArchivo Nombre base del archivo (sin extensión)
-     * @param <T> Tipo de datos de la tabla
-     */
     public static <T> void exportarTablaACSV(TableView<T> tabla, String nombreArchivo) {
         try {
             FileChooser fileChooser = new FileChooser();
@@ -101,11 +91,6 @@ public class ExportUtils {
         }
     }
 
-    /**
-     * Versión alternativa más segura sin tipos genéricos estrictos
-     * @param tabla TableView a exportar
-     * @param nombreArchivo Nombre base del archivo
-     */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public static void exportarTablaACSVSeguro(TableView<?> tabla, String nombreArchivo) {
         try {
@@ -171,11 +156,6 @@ public class ExportUtils {
         }
     }
 
-    /**
-     * Exporta datos de texto plano a un archivo
-     * @param datos Contenido del texto a exportar
-     * @param nombreArchivo Nombre base del archivo
-     */
     public static void exportarDatosTexto(String datos, String nombreArchivo) {
         try {
             FileChooser fileChooser = new FileChooser();
@@ -209,12 +189,6 @@ public class ExportUtils {
         }
     }
 
-    /**
-     * Exporta un reporte con formato profesional (encabezado y pie de página)
-     * @param titulo Título del reporte
-     * @param contenido Contenido del reporte
-     * @param nombreArchivo Nombre base del archivo
-     */
     public static void exportarReporteFormateado(String titulo, String contenido, String nombreArchivo) {
         try {
             FileChooser fileChooser = new FileChooser();
@@ -268,20 +242,6 @@ public class ExportUtils {
         }
     }
 
-    // ============================================
-    // MÉTODOS AUXILIARES PRIVADOS
-    // ============================================
-
-    /**
-     * Obtiene datos de una celda de forma segura, manejando problemas de tipos genéricos
-     * Este método soluciona el error de ClassCastException que puede ocurrir
-     * cuando se trabaja con TableColumn<T, ?> y wildcards genéricos
-     *
-     * @param columna Columna de la tabla
-     * @param item Item/fila de la tabla
-     * @param <T> Tipo de datos del item
-     * @return Valor de la celda o null si hay error
-     */
     @SuppressWarnings("unchecked")
     private static <T> Object getCellDataSafe(TableColumn<T, ?> columna, T item) {
         try {
@@ -302,11 +262,6 @@ public class ExportUtils {
         }
     }
 
-    /**
-     * Escapa caracteres especiales para formato CSV según RFC 4180
-     * @param value Valor a escapar
-     * @return Valor escapado y entrecomillado si es necesario
-     */
     private static String escapeCSV(String value) {
         if (value == null) return "";
 
@@ -322,12 +277,6 @@ public class ExportUtils {
         return escaped;
     }
 
-    /**
-     * Centra un texto dentro de un ancho especificado con espacios
-     * @param texto Texto a centrar
-     * @param ancho Ancho total deseado
-     * @return Texto centrado
-     */
     private static String centrarTexto(String texto, int ancho) {
         if (texto == null) texto = "";
 
@@ -339,11 +288,6 @@ public class ExportUtils {
         return " ".repeat(espaciosIzquierda) + texto;
     }
 
-    /**
-     * Muestra un diálogo de alerta de éxito
-     * @param titulo Título de la alerta
-     * @param mensaje Mensaje detallado
-     */
     private static void mostrarAlertaExito(String titulo, String mensaje) {
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(
                 javafx.scene.control.Alert.AlertType.INFORMATION);
@@ -353,11 +297,6 @@ public class ExportUtils {
         alert.showAndWait();
     }
 
-    /**
-     * Muestra un diálogo de alerta de error
-     * @param titulo Título de la alerta
-     * @param mensaje Mensaje detallado del error
-     */
     private static void mostrarAlertaError(String titulo, String mensaje) {
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(
                 javafx.scene.control.Alert.AlertType.ERROR);

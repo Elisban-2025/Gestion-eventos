@@ -25,10 +25,6 @@ public abstract class BaseController {
         this.usuarioLogueado = usuario;
     }
 
-    /**
-     * Inicializa el sistema de watermarks en un contenedor
-     * Debe ser llamado por los controladores hijos después de cargar su FXML
-     */
     protected void initializeWatermark(Pane container) {
         try {
             if (container != null) {

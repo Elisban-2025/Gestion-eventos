@@ -15,7 +15,6 @@ import java.util.Optional;
 @Log
 public class EventoDAO {
 
-    // ✅ MÉTODO CORREGIDO PARA GUARDAR
     public boolean guardar(Evento evento) {
         String sql = "INSERT INTO eventos (nombre, tipo, descripcion, fecha_hora_inicio, fecha_hora_fin, " +
                 "lugar, responsable, capacidad_maxima, requiere_inscripcion) " +

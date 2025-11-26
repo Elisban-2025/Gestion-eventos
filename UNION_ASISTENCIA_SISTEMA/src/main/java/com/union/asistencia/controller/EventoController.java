@@ -255,9 +255,7 @@ public class EventoController extends BaseController {
         participantesList.setAll(eventoDAO.obtenerParticipantesPorEvento(eventoId));
     }
 
-    /**
-     * NUEVO MÉTODO: Registro rápido de asistencia por DNI o código de estudiante
-     */
+
     @FXML
     private void handleRegistroRapidoAsistencia() {
         if (eventoSeleccionado == null) {

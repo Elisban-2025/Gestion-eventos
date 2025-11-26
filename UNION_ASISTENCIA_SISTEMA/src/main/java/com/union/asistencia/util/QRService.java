@@ -12,9 +12,6 @@ import java.awt.image.BufferedImage;
 
 public class QRService {
 
-    /**
-     * Genera un ImageView con código QR a partir de datos
-     */
     public static ImageView generarQR(String data, int width, int height) {
         try {
             QRCodeWriter qrCodeWriter = new QRCodeWriter();
@@ -41,25 +38,16 @@ public class QRService {
         }
     }
 
-    /**
-     * Genera datos para QR de estudiante
-     */
     public static String generarDataEstudiante(String id, String codigo, String nombre, String curso) {
         return String.format("EST|%s|%s|%s|%s|%s",
                 id, codigo, nombre, curso, System.currentTimeMillis());
     }
 
-    /**
-     * Genera datos para QR de docente
-     */
     public static String generarDataDocente(String id, String codigo, String nombre, String materia) {
         return String.format("DOC|%s|%s|%s|%s|%s",
                 id, codigo, nombre, materia, System.currentTimeMillis());
     }
 
-    /**
-     * Procesa y valida datos QR escaneados
-     */
     public static QRData procesarQRData(String qrData) {
         if (qrData == null || qrData.isEmpty()) {
             return null;
@@ -80,9 +68,6 @@ public class QRService {
         return null;
     }
 
-    /**
-     * Clase interna para manejar datos QR
-     */
     public static class QRData {
         private String tipo;
         private String id;
@@ -117,19 +102,12 @@ public class QRService {
         }
     }
 
-    // ==================== MÉTODOS PARA EVENTOS ====================
-
-    /**
-     * Genera datos para QR de evento
-     */
     public static String generarDataEvento(String eventoId, String nombreEvento, String lugar, String fecha) {
         return String.format("EVT|%s|%s|%s|%s|%s",
                 eventoId, nombreEvento, lugar, fecha, System.currentTimeMillis());
     }
 
-    /**
-     * Procesa datos QR de evento
-     */
+
     public static EventoQRData procesarQREvento(String qrData) {
         if (qrData == null || qrData.isEmpty()) {
             return null;
@@ -149,9 +127,6 @@ public class QRService {
         return null;
     }
 
-    /**
-     * Clase interna para manejar datos QR de evento
-     */
     public static class EventoQRData {
         private String eventoId;
         private String nombreEvento;

@@ -6,11 +6,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.image.ImageView?>
 
-<!--
-    Interfaz principal para el módulo de Control de Asistencia.
-    Permite registrar, consultar, modificar y eliminar registros de asistencia.
-    Diseñado con layout responsivo y componentes organizados por funcionalidad.
- -->
 <AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.union.asistencia.controller.AsistenciaController">
 
@@ -131,7 +126,6 @@
                                     </children>
                                 </VBox>
 
-                                <!-- ==================== PANEL DERECHO: TABLA DE REGISTROS ==================== -->
                                 <VBox spacing="10.0" style="-fx-padding: 0 0 0 10;" HBox.hgrow="ALWAYS">
                                     <children>
                                         <!-- Título de la tabla de registros -->

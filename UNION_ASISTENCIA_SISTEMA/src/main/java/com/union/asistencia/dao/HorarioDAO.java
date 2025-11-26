@@ -14,8 +14,6 @@ import java.util.Optional;
 
 @Log
 public class HorarioDAO {
-
-    // CORREGIR método guardar
     public boolean guardar(Horario horario) {
         String sql = "INSERT INTO horarios (dia_semana, hora_inicio, hora_fin, tipo, aula, asignatura_id, docente_id) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";

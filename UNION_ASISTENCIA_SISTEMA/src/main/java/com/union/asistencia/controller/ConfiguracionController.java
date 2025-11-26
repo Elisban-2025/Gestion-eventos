@@ -87,9 +87,6 @@ public class ConfiguracionController extends BaseController {
         }
     }
 
-    /**
-     * Configura los controles específicos del watermark
-     */
     private void configurarControlesWatermark() {
         try {
             // Configurar checkbox de activación
@@ -127,9 +124,6 @@ public class ConfiguracionController extends BaseController {
         }
     }
 
-    /**
-     * Carga la configuración existente desde preferencias
-     */
     private void cargarConfiguracionExistente() {
         try {
             // Cargar tema
@@ -164,9 +158,6 @@ public class ConfiguracionController extends BaseController {
         }
     }
 
-    /**
-     * Método para seleccionar logo principal - CORREGIDO
-     */
     @FXML
     private void seleccionarLogo() {
         try {
@@ -192,9 +183,6 @@ public class ConfiguracionController extends BaseController {
         }
     }
 
-    /**
-     * Método para agregar múltiples logos al carrusel - CORREGIDO
-     */
     @FXML
     private void agregarLogosCarrusel() {
         try {
@@ -245,9 +233,6 @@ public class ConfiguracionController extends BaseController {
         }
     }
 
-    /**
-     * Método para restaurar valores por defecto - CORREGIDO
-     */
     @FXML
     private void restaurarValoresPorDefecto() {
         try {
@@ -290,9 +275,6 @@ public class ConfiguracionController extends BaseController {
         }
     }
 
-    /**
-     * Carga el carrusel desde las preferencias
-     */
     private void cargarCarruselDesdePreferencias() {
         try {
             logosCarrusel.clear();
@@ -335,16 +317,10 @@ public class ConfiguracionController extends BaseController {
         }
     }
 
-    /**
-     * Actualiza la información del carrusel en la interfaz
-     */
     private void actualizarInfoLogos() {
         lblInfoLogos.setText("Logos en carrusel: " + logosCarrusel.size());
     }
 
-    /**
-     * Método para limpiar el carrusel
-     */
     @FXML
     private void limpiarCarrusel() {
         try {
@@ -369,9 +345,6 @@ public class ConfiguracionController extends BaseController {
         }
     }
 
-    /**
-     * Método para guardar toda la configuración
-     */
     @FXML
     private void guardarConfiguracion() {
         try {
@@ -410,9 +383,7 @@ public class ConfiguracionController extends BaseController {
         }
     }
 
-    /**
-     * Aplica el tema seleccionado
-     */
+
     private void aplicarTema(String tema) {
         try {
             Stage stage = (Stage) cbxTema.getScene().getWindow();
@@ -445,9 +416,6 @@ public class ConfiguracionController extends BaseController {
         }
     }
 
-    /**
-     * Muestra una alerta
-     */
     private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
@@ -456,9 +424,6 @@ public class ConfiguracionController extends BaseController {
         alert.showAndWait();
     }
 
-    /**
-     * Obtiene la lista de logos del carrusel (para uso en MainController)
-     */
     public static List<String> getLogosCarrusel() {
         return new ArrayList<>(logosCarrusel);
     }

@@ -419,7 +419,6 @@ public class UsuarioController extends BaseController {
         }
     }
 
-    // ✅ MÉTODO NUEVO: Para recargar la tabla manualmente si es necesario
     @FXML
     private void recargarTabla() {
         cargarDatos();

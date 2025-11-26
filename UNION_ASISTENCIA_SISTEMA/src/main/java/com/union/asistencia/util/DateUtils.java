@@ -14,7 +14,6 @@ public class DateUtils {
     private static final DateTimeFormatter DATE_TIME_FORMATTER_DISPLAY = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     private static final DateTimeFormatter DATE_TIME_FORMATTER_SQLITE = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    // MÉTODO MEJORADO para parsear cualquier formato de fecha
     public static LocalDate parseDateFromSQLite(String dateString) {
         if (dateString == null || dateString.trim().isEmpty()) {
             return null;
